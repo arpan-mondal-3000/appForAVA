@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(./Assets/login\ background.png);
+    overflow-x: hidden;
+}
+
+.container{
+    margin: 10vh 60vh 0 60vh;
+    border-radius: 23px;
+    background-color: rgba(255, 255, 255, .15);  
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    padding: 2vh 0 0 0;
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.subheading{
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.loginarea{
+    display: flex;
+    justify-content: center;
+}
+
+input[type = text], select{
+    width: 25vw;
+    margin-top: 80px;
+    padding: 12px 20px;
+    border: 1px solid white;
+    border-radius: 23px;
+    box-sizing: border-box;
+}
+
+input[type = password], select{
+    width: 100%;
+    margin: 20px 0 0 0;
+    padding: 12px 20px;
+    border: 1px solid white;
+    border-radius: 23px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.btn{
+    width: 30%;
+    margin: 40px 0 60px 120px;
+    background-color: #1a2b75;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 23px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.btn:hover{
+    background-color: #144964;
+}
+
+#error{
+    color: rgb(141, 23, 29);
+    padding: 0 0 20px 180px;
+}
+
+#success{
+    padding: 0 0 20px 230px;
+}
+
+@media screen and (max-width: 600px){
+    body{
+        background-image: url(./Assets/login\ background\ mobile.png);
+        background-repeat: no-repeat;
+        background-size: 100vh;
+    }
+
+    .header{
+        display: flex;
+        justify-content: center;
+        padding: 5vh 0 0 0;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+    
+    .subheading{
+        display: flex;
+        justify-content: center;
+        font-weight: 200;
+        font-size: 15px;
+    }
+
+    .container{
+        margin: 20vh 3vh 0 3vh;
+    }
+
+    input[type = text], select{
+        margin-top: 50px;
+        width: 70vw;
+    }
+
+    input[type = password], select{
+        margin-top: 10px;
+    }
+
+    .btn{
+        margin-top: 20px;
+        margin-bottom: 50px;
+        margin-left: 90px;
+    }
+
+    #error{
+        padding: 0 0 20px 42px;
+    }
+
+    #success{
+        padding: 0 0 20px 95px;
+    }
+}
+
