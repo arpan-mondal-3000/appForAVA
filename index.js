@@ -19,3 +19,5 @@ form.addEventListener("submit", function (event) {
       "<p id='error'>Incorrect username or password</p>";
   }
 });
+
+console.log("Hello world");
