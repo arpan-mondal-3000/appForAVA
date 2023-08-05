@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="container">
+        <div class="header">
+            Welcome Home!
+        </div>
+        <div class="subheading">
+            Login with your name and ID
+        </div>
+        <div class="form">
+            <form action="" id = "form" method="post">
+                <input type="text" id = "name" name = "name" placeholder="Your name" required>
+                <input type="password" id = "password" name = "password" placeholder="Your ID" required>
+                <button class = "btn" type = "submit">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
