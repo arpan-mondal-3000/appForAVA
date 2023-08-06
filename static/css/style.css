@@ -122,13 +122,4 @@ input[type = password], select{
     .btn{
         margin: 30px auto;
     }
-
-    #error{
-        padding: 0 0 20px 42px;
-    }
-
-    #success{
-        padding: 0 0 20px 95px;
-    }
 }
-
