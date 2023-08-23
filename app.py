@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
+import sqlite3
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -17,8 +18,18 @@ def index():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        session["name"] = request.form.get("name")
-        return redirect("/")
+        connection = sqlite3.connect("userdata.db")
+        cursor = connection.cursor()
+        name = request.form.get("name")
+        cursor.execute(f"SELECT password FROM userdata WHERE name = '{name}'")
+        rows = cursor.fetchall()
+        if rows != []:
+            password = rows[0][0]
+            cursor.close()
+            connection.close()
+            if password == request.form.get("password"):
+                session["name"] = request.form.get("name")
+                return redirect("/")
     return render_template("login.html")
 
 
