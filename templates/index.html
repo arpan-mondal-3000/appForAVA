@@ -1,8 +1,14 @@
 {% extends "layout.html" %}
 
+{% block additional_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Hello {{name}}</h1>
-    <form action = "/logout">
-        <input type = "submit" value = "Logout">
-    </form>
+    <div class="navbar">
+        <h1>Hello {{name}}</h1>
+        <form action = "/logout">
+            <input type = "submit" value = "Logout" class = "button-9">
+        </form>
+    </div>
 {% endblock %}
