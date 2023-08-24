@@ -45,6 +45,42 @@
   box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
 }
 
+.card img{
+  width: 100%;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.36);
+}
+
+.cards{
+  margin: 20px;
+}
+
+.card{
+  max-width: 350px;
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.1px);
+  -webkit-backdrop-filter: blur(8.1px);
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  cursor: pointer;
+}
+
+.card-heading{
+  margin: 0 20px;
+  font-size: 24px;
+}
+
+.card-desc{
+  margin: 0 20px 40px 20px;
+  opacity: 80%;
+}
+
+.card:hover{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
 @media screen and (max-width: 600px){
     .navbar{
         font-size: 12px;
