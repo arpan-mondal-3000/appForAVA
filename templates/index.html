@@ -12,7 +12,7 @@
         </form>
     </div>
     <div class="cards">
-        <div class="card card1">
+        <div class="card card1" id = "birthday-finder">
             <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Birthday Finder">
             <div class="card-heading">
                 Birthday Finder
@@ -22,4 +22,13 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let flaskLinkDiv = document.getElementById("birthday-finder");
+        
+            flaskLinkDiv.addEventListener("click", function() {
+                window.location.href = "/birthday-finder";
+            });
+        });
+    </script>
 {% endblock %}

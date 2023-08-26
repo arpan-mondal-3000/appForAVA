@@ -39,5 +39,12 @@ def logout():
     return redirect("/")
 
 
+@app.route("/birthday-finder")
+def birthday_finder():
+    if not session.get("name"):
+        return redirect("/login")
+    return render_template("birthdayfinder.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
