@@ -56,11 +56,15 @@ def search():
         cursor = connection.cursor()
         cursor.execute(f"SELECT dob FROM userdata WHERE name LIKE '{name}%'")
         rows = cursor.fetchall()
+        cursor.execute(f"SELECT name FROM userdata WHERE name LIKE '{name}%';")
+        names = cursor.fetchall()
+        if names != []:
+            name = names[0][0]
         if rows != []:
             dob = rows[0][0]
             birthdate = dob[:5]
-            cursor.close()
-            connection.close()
+        cursor.close()
+        connection.close()
 
         text = f"{name}'s birthday is on {birthdate}"
         return render_template("birthdayfinder.html", text=text, party_emoji="🥳", confetti="🎉")
