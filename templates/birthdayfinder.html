@@ -13,9 +13,13 @@
         </form>
     </div>
     <div class="search">
-        <form action="">
-            <input type="text" required placeholder="Enter Name">
-            <button class="btn search-btn">Search</button>
+        <form action="/search">
+            <input type="text" required placeholder="Enter Name" name="person_name" id="person_name" autocomplete="off">
+            <button class="btn search-btn" type="submit">Search</button>
         </form>
+    </div>
+    <div class="answer">
+        <p><span class="emoji">{{ party_emoji }}</span>{{ text }}<span class="emoji">{{ confetti }}</span></p>
+        <p class="error">{{ error_text }}</p>
     </div>
 {% endblock %}
