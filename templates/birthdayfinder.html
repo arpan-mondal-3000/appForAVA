@@ -2,6 +2,7 @@
 
 {% block additional_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/birthdayfinder.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -9,6 +10,12 @@
         <h1>Birthday Finder</h1>
         <form action = "/logout">
             <input type = "submit" value = "Logout" class = "button-9">
+        </form>
+    </div>
+    <div class="search">
+        <form action="">
+            <input type="text" required placeholder="Enter Name">
+            <button class="btn search-btn">Search</button>
         </form>
     </div>
 {% endblock %}
