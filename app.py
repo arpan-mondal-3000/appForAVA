@@ -21,7 +21,8 @@ def login():
         connection = sqlite3.connect("userdata.db")
         cursor = connection.cursor()
         name = request.form.get("name")
-        cursor.execute(f"SELECT password FROM userdata WHERE name = '{name}'")
+        cursor.execute(
+            f"SELECT password FROM userdata WHERE name = '{name.upper()}'")
         rows = cursor.fetchall()
         if rows != []:
             password = rows[0][0]
@@ -62,11 +63,11 @@ def search():
             name = names[0][0]
         if rows != []:
             dob = rows[0][0]
-            birthdate = dob[:5]
+            birthdate = dob[:2] + "/" + dob[3:5]
         cursor.close()
         connection.close()
 
-        text = f"{name}'s birthday is on {birthdate}"
+        text = f"{name.title()}'s birthday is on {birthdate}"
         return render_template("birthdayfinder.html", text=text, party_emoji="🥳", confetti="🎉")
     except:
         return render_template("birthdayfinder.html", error_text="Name not found in the database, try with a different name!")
