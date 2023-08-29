@@ -31,7 +31,11 @@ def login():
             if password == request.form.get("password"):
                 session["name"] = request.form.get("name")
                 return redirect("/")
-    return render_template("login.html")
+            else:
+                return render_template("login.html", msg="Invalid Password")
+        else:
+            return render_template("login.html", msg="Invalid username")
+    return render_template("login.html", msg="")
 
 
 @app.route("/logout")
