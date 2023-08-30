@@ -1,11 +1,17 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 import sqlite3
+import hashlib
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
+
+
+def hash_password(password):
+    hash = hashlib.sha256(password.encode('utf-8')).hexdigest()
+    return hash
 
 
 @app.route('/')
@@ -21,6 +27,8 @@ def login():
         connection = sqlite3.connect("userdata.db")
         cursor = connection.cursor()
         name = request.form.get("name")
+        user_password = request.form.get("password")
+        hashed_password = hash_password(user_password)
         cursor.execute(
             f"SELECT password FROM userdata WHERE name = '{name.upper()}'")
         rows = cursor.fetchall()
@@ -28,7 +36,7 @@ def login():
             password = rows[0][0]
             cursor.close()
             connection.close()
-            if password == request.form.get("password"):
+            if password == hashed_password:
                 session["name"] = request.form.get("name")
                 return redirect("/")
             else:
