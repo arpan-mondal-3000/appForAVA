@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 import sqlite3
 import hashlib
+import datetime
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -15,7 +16,32 @@ def hash_password(password):
 
 
 def upcoming_bdays():
-    pass
+    current_datetime = datetime.datetime.now()
+    current_month = current_datetime.month
+    current_date = current_datetime.date()
+
+    connection = sqlite3.connect("userdata.db")
+    cursor = connection.cursor()
+
+    if len(str(current_month)) == 1:
+        query = f"SELECT id,name,dob FROM userdata WHERE dob LIKE '%-0{current_month}-%'"
+    else:
+        query = f"SELECT id,name,dob FROM userdata WHERE dob LIKE '%-{current_month}-%'"
+
+    cursor.execute(query)
+    rows = cursor.fetchall()
+
+    upcoming_bdays = []
+    for i in range(0, len(rows)):
+        name = rows[i][1]
+        dob = rows[i][2]
+
+        if int(dob[:2]) >= int(str(current_date)[-2:]):
+            upcoming_bdays.append(f"{name.title()} - {dob[:2]}/{dob[3:5]}")
+
+    cursor.close()
+    connection.close()
+    return upcoming_bdays
 
 
 @app.route('/')
@@ -60,7 +86,7 @@ def logout():
 def birthday_finder():
     if not session.get("name"):
         return redirect("/login")
-    return render_template("birthdayfinder.html", text="Forgot his/her birthday? Not to worry, you are just one search away 😊", upcoming_list=["Hello", "World", "Arpan"])
+    return render_template("birthdayfinder.html", text="Forgot his/her birthday? Not to worry, you are just one search away 😊", upcoming_list=upcoming_bdays())
 
 
 @app.route("/search")
@@ -84,9 +110,9 @@ def search():
         connection.close()
 
         text = f"{name.title()}'s birthday is on {birthdate}"
-        return render_template("birthdayfinder.html", text=text, party_emoji="🥳", confetti="🎉")
+        return render_template("birthdayfinder.html", text=text, party_emoji="🥳", confetti="🎉", upcoming_list=upcoming_bdays())
     except:
-        return render_template("birthdayfinder.html", error_text="Name not found in the database, try with a different name!")
+        return render_template("birthdayfinder.html", error_text="Name not found in the database, try with a different name!", upcoming_list=upcoming_bdays())
 
 
 if __name__ == "__main__":
