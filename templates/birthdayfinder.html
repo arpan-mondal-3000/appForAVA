@@ -22,4 +22,12 @@
         <p><span class="emoji">{{ party_emoji }}</span>{{ text }}<span class="emoji">{{ confetti }}</span></p>
         <p class="error">{{ error_text }}</p>
     </div>
+    <div class="upcoming">
+        <h1>Upcoming Birthdays</h1>
+        <ul>
+            {% for name in upcoming_list %}
+                <li>{{ name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

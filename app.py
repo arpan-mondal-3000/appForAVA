@@ -14,6 +14,10 @@ def hash_password(password):
     return hash
 
 
+def upcoming_bdays():
+    pass
+
+
 @app.route('/')
 def index():
     if not session.get("name"):
@@ -56,7 +60,7 @@ def logout():
 def birthday_finder():
     if not session.get("name"):
         return redirect("/login")
-    return render_template("birthdayfinder.html", text="Forgot his/her birthday? Not to worry, you are just one search away 😊")
+    return render_template("birthdayfinder.html", text="Forgot his/her birthday? Not to worry, you are just one search away 😊", upcoming_list=["Hello", "World", "Arpan"])
 
 
 @app.route("/search")
